@@ -22,7 +22,7 @@
     <PlayServicesTasksAarPath>$(ProjectDir)Supplier/play-services-tasks-18.0.2.aar</PlayServicesTasksAarPath>
   </PropertyGroup>
 
-  <Target Name="DownloadLibs" BeforeTargets="ResolveReferences">
+  <Target Name="DownloadLibs" BeforeTargets="BeforeBuild">
 
     <DownloadFile Condition="!Exists('$(JavaxInjectJarFilePath)')"
       SourceUrl="https://repo1.maven.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"

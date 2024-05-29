@@ -14,7 +14,7 @@
     <MLKitTextRecognitionAdapterAarPath>$(ProjectDir)../MLKitTextRecognitionAdapter/MLKitTextRecognitionAdapter/build/outputs/aar</MLKitTextRecognitionAdapterAarPath>
   </PropertyGroup>
 
-  <Target Name="RunGradleBuild" BeforeTargets="ResolveReferences">
+  <Target Name="RunGradleBuild" BeforeTargets="BeforeBuild">
     <Exec
       Condition="'$(OS)' != 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
       Command="cd ../MLKitTextRecognitionAdapter
@@ -44,7 +44,7 @@
     <TextRecognitionAarPath>$(ProjectDir)Supplier/text-recognition-16.0.0.aar</TextRecognitionAarPath>
   </PropertyGroup>
 
-  <Target Name="DownloadLibs" BeforeTargets="ResolveReferences">
+  <Target Name="DownloadLibs" BeforeTargets="BeforeBuild">
 
     <DownloadFile Condition="!Exists('$(PlayServicesMlkitTextRecognitionAarPath)')"
       SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition/19.0.0/play-services-mlkit-text-recognition-19.0.0.aar"
