@@ -88,8 +88,6 @@
       SourceUrl="https://maven.google.com/com/google/android/gms/play-services-tasks/18.0.2/play-services-tasks-18.0.2.aar"
       DestinationFolder="$(ProjectDir)Supplier/"
       SkipUnchangedFiles="true" />
-  </Target>
-  <Target Name="AndroidLibraryBinding" DependsOnTargets="DownloadLibs">
     <ItemGroup>
       <AndroidLibrary Update="$(JavaxInjectJarFilePath)" />
       <AndroidLibrary Update="$(TransportBackendCCTAarFilePath)" />
@@ -106,20 +104,23 @@
       <AndroidLibrary Update="$(PlayServicesTasksAarPath)" />
     </ItemGroup>
   </Target>
-  <ItemGroup>
-    <AndroidLibrary Update="$(JavaxInjectJarFilePath)" />
-    <AndroidLibrary Update="$(TransportBackendCCTAarFilePath)" />
-    <AndroidLibrary Update="$(TransportApiAarFilePath)" />
-    <AndroidLibrary Update="$(TransportRuntimeAarFilePath)" />
-    <AndroidLibrary Update="$(FirebaseAnnotationsJarFilePath)" />
-    <AndroidLibrary Update="$(FirebaseEncodersJarFilePath)" />
-    <AndroidLibrary Update="$(FirebaseEncodersJsonAarFilePath)" />
-    <AndroidLibrary Update="$(FirebaseComponentsAarFilePath)" />
-    <AndroidLibrary Update="$(VisionCommonAarFilePath)" />
-    <AndroidLibrary Update="$(CommonAarFilePath)" />
-    <AndroidLibrary Update="$(PlayServicesBaseAarPath)" />
-    <AndroidLibrary Update="$(PlayServicesBasementAarPath)" />
-    <AndroidLibrary Update="$(PlayServicesTasksAarPath)" />
-  </ItemGroup>
+  <!-- <Target Name="AndroidLibraryBinding" DependsOnTargets="DownloadLibs">
+    <ItemGroup>
+      <AndroidLibrary Update="$(JavaxInjectJarFilePath)" />
+      <AndroidLibrary Update="$(TransportBackendCCTAarFilePath)" />
+      <AndroidLibrary Update="$(TransportApiAarFilePath)" />
+      <AndroidLibrary Update="$(TransportRuntimeAarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseAnnotationsJarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseEncodersJarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseEncodersJsonAarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseComponentsAarFilePath)" />
+      <AndroidLibrary Update="$(VisionCommonAarFilePath)" />
+      <AndroidLibrary Update="$(CommonAarFilePath)" />
+      <AndroidLibrary Update="$(PlayServicesBaseAarPath)" />
+      <AndroidLibrary Update="$(PlayServicesBasementAarPath)" />
+      <AndroidLibrary Update="$(PlayServicesTasksAarPath)" />
+    </ItemGroup>
+  </Target> -->
+
 
 </Project>

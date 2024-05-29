@@ -34,6 +34,9 @@
       SourceFiles="@(MidLayerAarFile)"
       DestinationFolder="$(ProjectDir)Supplier/"
     />
+    <ItemGroup>
+      <AndroidLibrary Update="$(ProjectDir)Supplier/$(MLKitTextRecognitionAdapterAar)" />
+    </ItemGroup>
   </Target>
 
   <PropertyGroup>
@@ -70,8 +73,15 @@
       SourceUrl="https://maven.google.com/com/google/mlkit/text-recognition/16.0.0/text-recognition-16.0.0.aar"
       DestinationFolder="$(ProjectDir)Supplier/"
       SkipUnchangedFiles="true" />
+    <ItemGroup>
+      <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionAarPath)" />
+      <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionCommonAarPath)" />
+      <AndroidLibrary Update="$(VisionInterfacesAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionBundledCommonAarPath)" />
+    </ItemGroup>
   </Target>
-
+  <!-- 
   <Target Name="AndroidLibraryBinding0" DependsOnTargets="RunGradleBuild">
     <ItemGroup>
       <AndroidLibrary Update="$(ProjectDir)Supplier/$(MLKitTextRecognitionAdapterAar)" />
@@ -86,15 +96,8 @@
       <AndroidLibrary Update="$(VisionInterfacesAarPath)" />
       <AndroidLibrary Update="$(TextRecognitionBundledCommonAarPath)" />
     </ItemGroup>
-  </Target>
-  <ItemGroup>
-    <AndroidLibrary Update="$(ProjectDir)Supplier/$(MLKitTextRecognitionAdapterAar)" />
-    <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionAarPath)" />
-    <AndroidLibrary Update="$(TextRecognitionAarPath)" />
-    <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionCommonAarPath)" />
-    <AndroidLibrary Update="$(VisionInterfacesAarPath)" />
-    <AndroidLibrary Update="$(TextRecognitionBundledCommonAarPath)" />
-  </ItemGroup>
+  </Target> -->
+
   <ItemGroup>
     <ProjectReference
       Include="../../Commons/MauiMLKit.Commons.AndroidSupplier.csproj"
