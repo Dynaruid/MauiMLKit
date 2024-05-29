@@ -26,7 +26,7 @@
   </PropertyGroup>
 
 
-  <Target Name="RunXcodeBuild" BeforeTargets="BuildOnlySettings" Condition="$(IOS_SIMULATOR) != ''">
+  <Target Name="RunXcodeBuild" BeforeTargets="BeforeBuild" Condition="$(IOS_SIMULATOR) != ''">
     <Exec Command="cd Supplier
       pod install
       xcodebuild $(XcodeBuildOptions) -workspace Supplier.xcworkspace -scheme Supplier -sdk $(IOSBuidTarget)"
