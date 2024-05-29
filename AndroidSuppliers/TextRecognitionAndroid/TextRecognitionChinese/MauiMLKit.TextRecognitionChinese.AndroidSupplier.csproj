@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>30</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PlayServicesTextRecognitionChineseAarPath>$(ProjectDir)Supplier/play-services-mlkit-text-recognition-Chinese-16.0.0.aar</PlayServicesTextRecognitionChineseAarPath>
+    <TextRecognitionChineseAarPath>$(ProjectDir)Supplier/text-recognition-Chinese-16.0.0.aar</TextRecognitionChineseAarPath>
+  </PropertyGroup>
+
+  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+    <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionChineseAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-Chinese/16.0.0/play-services-mlkit-text-recognition-Chinese-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TextRecognitionChineseAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/text-recognition-Chinese/16.0.0/text-recognition-Chinese-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="AndroidLibraryBinding" AfterTargets="DownloadLibs">
+    <ItemGroup>
+      <AndroidLibrary Update="$(PlayServicesTextRecognitionChineseAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionChineseAarPath)" />
+    </ItemGroup>
+  </Target>
+</Project>

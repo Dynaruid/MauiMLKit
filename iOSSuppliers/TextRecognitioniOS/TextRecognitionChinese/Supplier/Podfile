@@ -1,0 +1,30 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '16.0'
+
+target 'Supplier' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Supplier
+  pod 'MLKitTextRecognitionChinese', '~> 3.0.0'
+  
+  pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
+  
+  user_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
+
+  post_install do |installer|
+    # 특정 패키지를 빌드 단계에서 제외
+    installer.pods_project.targets.each do |target|
+      if ['MLKitTextRecognitionCommon', 'MLKitCommon', 'MLKitVision'].include?(target.name)
+        target.build_configurations.each do |config|
+          config.build_settings['EXCLUDED_SOURCE_FILE_NAMES'] = '**/*'
+        end
+      end
+    end
+  end
+end
+

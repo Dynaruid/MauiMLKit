@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>30</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PlayServicesTextRecognitionKoreanAarPath>$(ProjectDir)Supplier/play-services-mlkit-text-recognition-korean-16.0.0.aar</PlayServicesTextRecognitionKoreanAarPath>
+    <TextRecognitionKoreanAarPath>$(ProjectDir)Supplier/text-recognition-korean-16.0.0.aar</TextRecognitionKoreanAarPath>
+  </PropertyGroup>
+
+  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+    <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionKoreanAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-korean/16.0.0/play-services-mlkit-text-recognition-korean-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TextRecognitionKoreanAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/text-recognition-korean/16.0.0/text-recognition-korean-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="AndroidLibraryBinding" AfterTargets="DownloadLibs">
+    <ItemGroup>
+      <AndroidLibrary Update="$(PlayServicesTextRecognitionKoreanAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionKoreanAarPath)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

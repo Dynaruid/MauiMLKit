@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>30</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PlayServicesTextRecognitionJapaneseAarPath>$(ProjectDir)Supplier/play-services-mlkit-text-recognition-Japanese-16.0.0.aar</PlayServicesTextRecognitionJapaneseAarPath>
+    <TextRecognitionJapaneseAarPath>$(ProjectDir)Supplier/text-recognition-Japanese-16.0.0.aar</TextRecognitionJapaneseAarPath>
+  </PropertyGroup>
+
+  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+    <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionJapaneseAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-Japanese/16.0.0/play-services-mlkit-text-recognition-Japanese-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TextRecognitionJapaneseAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/text-recognition-Japanese/16.0.0/text-recognition-Japanese-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="AndroidLibraryBinding" AfterTargets="DownloadLibs">
+    <ItemGroup>
+      <AndroidLibrary Update="$(PlayServicesTextRecognitionJapaneseAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionJapaneseAarPath)" />
+    </ItemGroup>
+  </Target>
+</Project>

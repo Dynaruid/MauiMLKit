@@ -1,0 +1,100 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(IOS_SIMULATOR) == 'True'">
+    <IOSDeviceType>iphonesimulator</IOSDeviceType>
+    <IOSBuidTarget>iphonesimulator -arch x86_64</IOSBuidTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IOS_SIMULATOR) == 'False'">
+    <IOSDeviceType>iphoneos</IOSDeviceType>
+    <IOSBuidTarget>iphoneos</IOSBuidTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <XcodeBuildOptions>build</XcodeBuildOptions>
+    <XCodeBuildDir>Supplier/Debug-$(IOSDeviceType)</XCodeBuildDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <XcodeBuildOptions>build -configuration Release</XcodeBuildOptions>
+    <XCodeBuildDir>Supplier/Release-$(IOSDeviceType)</XCodeBuildDir>
+  </PropertyGroup>
+
+
+  <Target Name="RunXcodeBuild" BeforeTargets="BuildOnlySettings" Condition="$(IOS_SIMULATOR) != ''">
+    <Exec Command="cd Supplier
+      pod install
+      xcodebuild $(XcodeBuildOptions) -workspace Supplier.xcworkspace -scheme Supplier -sdk $(IOSBuidTarget)"
+    />
+
+    <ItemGroup>
+      <NativeReference
+        Include="Supplier/Pods/MLKitTextRecognitionCommon/Frameworks/MLKitTextRecognitionCommon.framework">
+        <Kind>Framework</Kind>
+        <LinkerFlags>-ObjC -lc++</LinkerFlags>
+      </NativeReference>
+      <NativeReference
+        Include="Supplier/Pods/MLKitTextRecognition/Frameworks/MLKitTextRecognition.framework">
+        <Kind>Framework</Kind>
+        <LinkerFlags>-ObjC -lc++</LinkerFlags>
+      </NativeReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <NativeReference
+        Include="Supplier/Pods/MLKitTextRecognitionChinese/Frameworks/MLKitTextRecognitionChinese.framework">
+        <Kind>Framework</Kind>
+        <LinkerFlags>-ObjC -lc++</LinkerFlags>
+      </NativeReference>
+      <NativeReference
+        Include="Supplier/Pods/MLKitTextRecognitionDevanagari/Frameworks/MLKitTextRecognitionDevanagari.framework">
+        <Kind>Framework</Kind>
+        <LinkerFlags>-ObjC -lc++</LinkerFlags>
+      </NativeReference>
+      <NativeReference
+        Include="Supplier/Pods/MLKitTextRecognitionJapanese/Frameworks/MLKitTextRecognitionJapanese.framework">
+        <Kind>Framework</Kind>
+        <LinkerFlags>-ObjC -lc++</LinkerFlags>
+      </NativeReference>
+      <NativeReference
+        Include="Supplier/Pods/MLKitTextRecognitionKorean/Frameworks/MLKitTextRecognitionKorean.framework">
+        <Kind>Framework</Kind>
+        <LinkerFlags>-ObjC -lc++</LinkerFlags>
+      </NativeReference>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="PrepareBundle" AfterTargets="RunXcodeBuild">
+    <ItemGroup>
+      <LatinOCRResources Include="$(XCodeBuildDir)/MLKitTextRecognition/LatinOCRResources.bundle/**/*" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(LatinOCRResources)"
+      DestinationFolder="$(MSBuildProjectDirectory)/LatinOCRResources.bundle"
+    />
+    <ItemGroup>
+      <BundleResource Include="LatinOCRResources.bundle/**/*" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="MLKitTextRecognition/*.cs" />
+    <ObjcBindingApiDefinition Include="MLKitTextRecognitionCommon/*.cs" />
+    <ObjcBindingApiDefinition Include="MLKitTextRecognitionChinese/*.cs" />
+    <ObjcBindingApiDefinition Include="MLKitTextRecognitionDevanagari/*.cs" />
+    <ObjcBindingApiDefinition Include="MLKitTextRecognitionJapanese/*.cs" />
+    <ObjcBindingApiDefinition Include="MLKitTextRecognitionKorean/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference
+      Include="../../Commons/MauiMLKit.Commons.iOSSupplier.csproj"
+      Properties="IOS_SIMULATOR=$(IOS_SIMULATOR)"
+    />
+  </ItemGroup>
+</Project>

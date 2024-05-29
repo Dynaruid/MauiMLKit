@@ -1,0 +1,110 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>30</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <JavaxInjectJarFilePath>$(ProjectDir)Supplier/javax.inject-1.jar</JavaxInjectJarFilePath>
+    <TransportBackendCCTAarFilePath>$(ProjectDir)Supplier/transport-backend-cct-2.3.3.aar</TransportBackendCCTAarFilePath>
+    <TransportApiAarFilePath>$(ProjectDir)Supplier/transport-api-2.2.1.aar</TransportApiAarFilePath>
+    <TransportRuntimeAarFilePath>$(ProjectDir)Supplier/transport-runtime-2.2.6.aar</TransportRuntimeAarFilePath>
+    <FirebaseAnnotationsJarFilePath>$(ProjectDir)Supplier/firebase-annotations-16.0.0.jar</FirebaseAnnotationsJarFilePath>
+    <FirebaseEncodersJarFilePath>$(ProjectDir)Supplier/firebase-encoders-16.1.0.jar</FirebaseEncodersJarFilePath>
+    <FirebaseEncodersJsonAarFilePath>$(ProjectDir)Supplier/firebase-encoders-json-17.1.0.aar</FirebaseEncodersJsonAarFilePath>
+    <FirebaseComponentsAarFilePath>$(ProjectDir)Supplier/firebase-components-16.1.0.aar</FirebaseComponentsAarFilePath>
+    <VisionCommonAarFilePath>$(ProjectDir)Supplier/vision-common-17.3.0.aar</VisionCommonAarFilePath>
+    <CommonAarFilePath>$(ProjectDir)Supplier/common-18.10.0.aar</CommonAarFilePath>
+    <PlayServicesBaseAarPath>$(ProjectDir)Supplier/play-services-base-18.1.0.aar</PlayServicesBaseAarPath>
+    <PlayServicesBasementAarPath>$(ProjectDir)Supplier/play-services-basement-18.1.0.aar</PlayServicesBasementAarPath>
+    <PlayServicesTasksAarPath>$(ProjectDir)Supplier/play-services-tasks-18.0.2.aar</PlayServicesTasksAarPath>
+  </PropertyGroup>
+
+  <Target Name="DownloadLibs" BeforeTargets="BuildOnlySettings">
+
+    <DownloadFile Condition="!Exists('$(JavaxInjectJarFilePath)')"
+      SourceUrl="https://repo1.maven.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TransportBackendCCTAarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/android/datatransport/transport-backend-cct/2.3.3/transport-backend-cct-2.3.3.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TransportApiAarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/android/datatransport/transport-api/2.2.1/transport-api-2.2.1.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TransportRuntimeAarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/android/datatransport/transport-runtime/2.2.6/transport-runtime-2.2.6.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(FirebaseAnnotationsJarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/firebase/firebase-annotations/16.0.0/firebase-annotations-16.0.0.jar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(FirebaseEncodersJarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/firebase/firebase-encoders/16.1.0/firebase-encoders-16.1.0.jar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(FirebaseEncodersJsonAarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/firebase/firebase-encoders-json/17.1.0/firebase-encoders-json-17.1.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(FirebaseComponentsAarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/firebase/firebase-components/16.1.0/firebase-components-16.1.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(VisionCommonAarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/vision-common/17.3.0/vision-common-17.3.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(CommonAarFilePath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/common/18.10.0/common-18.10.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(PlayServicesBaseAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-base/18.1.0/play-services-base-18.1.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(PlayServicesBasementAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-basement/18.1.0/play-services-basement-18.1.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(PlayServicesTasksAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-tasks/18.0.2/play-services-tasks-18.0.2.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="AndroidLibraryBinding" DependsOnTargets="DownloadLibs">
+    <ItemGroup>
+      <AndroidLibrary Update="$(JavaxInjectJarFilePath)" />
+      <AndroidLibrary Update="$(TransportBackendCCTAarFilePath)" />
+      <AndroidLibrary Update="$(TransportApiAarFilePath)" />
+      <AndroidLibrary Update="$(TransportRuntimeAarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseAnnotationsJarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseEncodersJarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseEncodersJsonAarFilePath)" />
+      <AndroidLibrary Update="$(FirebaseComponentsAarFilePath)" />
+      <AndroidLibrary Update="$(VisionCommonAarFilePath)" />
+      <AndroidLibrary Update="$(CommonAarFilePath)" />
+      <AndroidLibrary Update="$(PlayServicesBaseAarPath)" />
+      <AndroidLibrary Update="$(PlayServicesBasementAarPath)" />
+      <AndroidLibrary Update="$(PlayServicesTasksAarPath)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

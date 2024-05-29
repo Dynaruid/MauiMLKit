@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(IOS_SIMULATOR) == 'True'">
+    <IOSDeviceType>iphonesimulator</IOSDeviceType>
+    <IOSBuidTarget>iphonesimulator -arch x86_64</IOSBuidTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IOS_SIMULATOR) == 'False'">
+    <IOSDeviceType>iphoneos</IOSDeviceType>
+    <IOSBuidTarget>iphoneos</IOSBuidTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <XcodeBuildOptions>build</XcodeBuildOptions>
+    <XCodeBuildDir>Supplier/Debug-$(IOSDeviceType)</XCodeBuildDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <XcodeBuildOptions>build -configuration Release</XcodeBuildOptions>
+    <XCodeBuildDir>Supplier/Release-$(IOSDeviceType)</XCodeBuildDir>
+  </PropertyGroup>
+
+
+  <Target Name="RunXcodeBuild" BeforeTargets="BuildOnlySettings" Condition="$(IOS_SIMULATOR) != ''">
+    <Exec
+      Command="cd Supplier
+      pod install
+      xcodebuild $(XcodeBuildOptions) -workspace Supplier.xcworkspace -scheme Supplier -sdk $(IOSBuidTarget)"
+    />
+  </Target>
+
+  <Target Name="PrepareBundle" AfterTargets="RunXcodeBuild">
+    <ItemGroup>
+      <JapaneseOCRResources Include="$(XCodeBuildDir)/MLKitTextRecognitionJapanese/JapaneseOCRResources.bundle/**/*" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(JapaneseOCRResources)"
+      DestinationFolder="$(MSBuildProjectDirectory)/JapaneseOCRResources.bundle"
+    />
+    <ItemGroup>
+      <BundleResource Include="JapaneseOCRResources.bundle/**/*" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+</Project>

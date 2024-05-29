@@ -1,0 +1,11 @@
+/.vs
+/Properties
+/bin
+/obj
+/libraries
+*.sln
+.DS_Store
+
+# Project exclude paths
+/.gradle/
+/.idea/

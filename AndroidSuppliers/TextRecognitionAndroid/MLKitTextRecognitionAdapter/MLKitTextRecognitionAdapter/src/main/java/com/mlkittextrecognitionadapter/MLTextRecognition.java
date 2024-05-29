@@ -1,4 +1,4 @@
-package com.mlkitmidlayer.textrecognition;
+package com.mlkittextrecognitionadapter;
 
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;

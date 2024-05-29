@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>30</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GradleBuildOptions>assembleRelease</GradleBuildOptions>
+    <MLKitTextRecognitionAdapterAar>MLKitTextRecognitionAdapter-release.aar</MLKitTextRecognitionAdapterAar>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MLKitTextRecognitionAdapterAarPath>$(ProjectDir)../MLKitTextRecognitionAdapter/MLKitTextRecognitionAdapter/build/outputs/aar</MLKitTextRecognitionAdapterAarPath>
+  </PropertyGroup>
+
+  <Target Name="RunGradleBuild" BeforeTargets="BuildOnlySettings">
+    <Exec
+      Condition="'$(OS)' != 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
+      Command="cd ../MLKitTextRecognitionAdapter
+      ./gradlew $(GradleBuildOptions)"
+    />
+    <Exec
+      Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
+      Command="cd ..\MLKitTextRecognitionAdapter
+      gradlew.bat $(GradleBuildOptions)"
+      WorkingDirectory="$(ProjectDir)"
+    />
+    <ItemGroup>
+      <MidLayerAarFile
+        Include="$(MLKitTextRecognitionAdapterAarPath)/$(MLKitTextRecognitionAdapterAar)" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(MidLayerAarFile)"
+      DestinationFolder="$(ProjectDir)Supplier/"
+    />
+  </Target>
+
+  <PropertyGroup>
+    <PlayServicesMlkitTextRecognitionAarPath>$(ProjectDir)Supplier/play-services-mlkit-text-recognition-19.0.0.aar</PlayServicesMlkitTextRecognitionAarPath>
+    <PlayServicesMlkitTextRecognitionCommonAarPath>$(ProjectDir)Supplier/play-services-mlkit-text-recognition-common-19.0.0.aar</PlayServicesMlkitTextRecognitionCommonAarPath>
+    <VisionInterfacesAarPath>$(ProjectDir)Supplier/vision-interfaces-16.2.0.aar</VisionInterfacesAarPath>
+    <TextRecognitionBundledCommonAarPath>$(ProjectDir)Supplier/text-recognition-bundled-common-16.0.0.aar</TextRecognitionBundledCommonAarPath>
+    <TextRecognitionAarPath>$(ProjectDir)Supplier/text-recognition-16.0.0.aar</TextRecognitionAarPath>
+  </PropertyGroup>
+
+  <Target Name="DownloadLibs" BeforeTargets="BuildOnlySettings">
+
+    <DownloadFile Condition="!Exists('$(PlayServicesMlkitTextRecognitionAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition/19.0.0/play-services-mlkit-text-recognition-19.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(PlayServicesMlkitTextRecognitionCommonAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-common/19.0.0/play-services-mlkit-text-recognition-common-19.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(VisionInterfacesAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/vision-interfaces/16.2.0/vision-interfaces-16.2.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TextRecognitionBundledCommonAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/text-recognition-bundled-common/16.0.0/text-recognition-bundled-common-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TextRecognitionAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/text-recognition/16.0.0/text-recognition-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="AndroidLibraryBinding0" DependsOnTargets="RunGradleBuild">
+    <ItemGroup>
+      <AndroidLibrary Update="$(ProjectDir)Supplier/$(MLKitTextRecognitionAdapterAar)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="AndroidLibraryBinding1" DependsOnTargets="DownloadLibs">
+    <ItemGroup>
+      <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionAarPath)" />
+      <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionCommonAarPath)" />
+      <AndroidLibrary Update="$(VisionInterfacesAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionBundledCommonAarPath)" />
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <ProjectReference
+      Include="../../Commons/MauiMLKit.Commons.AndroidSupplier.csproj"
+    />
+  </ItemGroup>
+
+</Project>

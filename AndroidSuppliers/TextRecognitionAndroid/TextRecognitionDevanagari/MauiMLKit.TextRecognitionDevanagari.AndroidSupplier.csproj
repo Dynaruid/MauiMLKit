@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>30</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PlayServicesTextRecognitionDevanagariAarPath>$(ProjectDir)Supplier/play-services-mlkit-text-recognition-Devanagari-16.0.0.aar</PlayServicesTextRecognitionDevanagariAarPath>
+    <TextRecognitionDevanagariAarPath>$(ProjectDir)Supplier/text-recognition-Devanagari-16.0.0.aar</TextRecognitionDevanagariAarPath>
+  </PropertyGroup>
+
+  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+    <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionDevanagariAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-Devanagari/16.0.0/play-services-mlkit-text-recognition-Devanagari-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+
+    <DownloadFile Condition="!Exists('$(TextRecognitionDevanagariAarPath)')"
+      SourceUrl="https://maven.google.com/com/google/mlkit/text-recognition-Devanagari/16.0.0/text-recognition-Devanagari-16.0.0.aar"
+      DestinationFolder="$(ProjectDir)Supplier/"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="AndroidLibraryBinding" AfterTargets="DownloadLibs">
+    <ItemGroup>
+      <AndroidLibrary Update="$(PlayServicesTextRecognitionDevanagariAarPath)" />
+      <AndroidLibrary Update="$(TextRecognitionDevanagariAarPath)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

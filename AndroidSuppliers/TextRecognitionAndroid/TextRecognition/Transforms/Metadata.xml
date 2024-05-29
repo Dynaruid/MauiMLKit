@@ -1,0 +1,9 @@
+﻿<metadata>
+  <remove-node path="/api/package[starts-with(@name, 'com.google.mlkit.vision.text.pipeline')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.google.android.libraries.vision.visionkit.pipeline')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.google.android.gms.internal')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.google.android.gms.common')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.google.android.gms.signin')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.google.android.gms.auth')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.google.android.gms.task')]" />
+</metadata>

@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.application)
 }
 
 android {
@@ -7,10 +7,13 @@ android {
     compileSdk = 34
 
     defaultConfig {
+        applicationId = "com.mlkittextrecognitionadapter"
         minSdk = 30
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -35,9 +38,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.text.recognition)
-    implementation(libs.text.recognition.chinese)
-    implementation(libs.text.recognition.devanagari)
-    implementation(libs.text.recognition.japanese)
-    implementation(libs.text.recognition.korean)
 }

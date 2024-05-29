@@ -1,0 +1,7 @@
+/.vs
+/Properties
+/bin
+/obj
+/libraries
+*.sln
+.DS_Store
