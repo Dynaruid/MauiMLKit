@@ -56,7 +56,7 @@
 
 	<Target
 		Name="EnsureTextRecognitionAndroidSupplierBuilt"
-		Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" BeforeTargets="BuildOnlySettings"
+		Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" BeforeTargets="BeforeBuild"
 	>
 		<MSBuild
 			Projects="../AndroidSuppliers/TextRecognitionAndroid/TextRecognition/MauiMLKit.TextRecognition.AndroidSupplier.csproj"

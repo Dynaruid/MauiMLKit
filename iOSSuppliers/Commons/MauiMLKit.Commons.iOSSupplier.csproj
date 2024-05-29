@@ -25,7 +25,7 @@
     <XCodeBuildDir>Supplier/Release-$(IOSDeviceType)</XCodeBuildDir>
   </PropertyGroup>
 
-  <Target Name="RunXcodeBuild" BeforeTargets="BeforeBuild" Condition="$(IOS_SIMULATOR) != ''">
+  <Target Name="RunXcodeBuild" BeforeTargets="BuildOnlySettings" Condition="$(IOS_SIMULATOR) != ''">
     <Message Importance="high" Text="Using IOS_SIMULATOR: $(IOS_SIMULATOR)" />
     <Exec Command="cd Supplier
       pod install

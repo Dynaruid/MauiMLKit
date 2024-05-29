@@ -34,7 +34,9 @@
 		<ProjectReference Include="../AndroidSuppliers/Commons/MauiMLKit.Commons.AndroidSupplier.csproj" />
 	</ItemGroup>
 
-	<Target Name="EnsureCommonsAndroidSupplierBuilt" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" BeforeTargets="BuildOnlySettings">
+	<Target Name="EnsureCommonsAndroidSupplierBuilt"
+		Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'"
+		BeforeTargets="BeforeBuild">
 		<MSBuild Projects="../AndroidSuppliers/Commons/MauiMLKit.Commons.AndroidSupplier.csproj" Targets="Build" />
 	</Target>
 
