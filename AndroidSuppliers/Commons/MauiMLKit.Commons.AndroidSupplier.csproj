@@ -106,5 +106,20 @@
       <AndroidLibrary Update="$(PlayServicesTasksAarPath)" />
     </ItemGroup>
   </Target>
+  <ItemGroup>
+    <AndroidLibrary Update="$(JavaxInjectJarFilePath)" />
+    <AndroidLibrary Update="$(TransportBackendCCTAarFilePath)" />
+    <AndroidLibrary Update="$(TransportApiAarFilePath)" />
+    <AndroidLibrary Update="$(TransportRuntimeAarFilePath)" />
+    <AndroidLibrary Update="$(FirebaseAnnotationsJarFilePath)" />
+    <AndroidLibrary Update="$(FirebaseEncodersJarFilePath)" />
+    <AndroidLibrary Update="$(FirebaseEncodersJsonAarFilePath)" />
+    <AndroidLibrary Update="$(FirebaseComponentsAarFilePath)" />
+    <AndroidLibrary Update="$(VisionCommonAarFilePath)" />
+    <AndroidLibrary Update="$(CommonAarFilePath)" />
+    <AndroidLibrary Update="$(PlayServicesBaseAarPath)" />
+    <AndroidLibrary Update="$(PlayServicesBasementAarPath)" />
+    <AndroidLibrary Update="$(PlayServicesTasksAarPath)" />
+  </ItemGroup>
 
 </Project>

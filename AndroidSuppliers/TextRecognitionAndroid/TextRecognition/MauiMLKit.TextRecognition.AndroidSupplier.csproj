@@ -88,6 +88,14 @@
     </ItemGroup>
   </Target>
   <ItemGroup>
+    <AndroidLibrary Update="$(ProjectDir)Supplier/$(MLKitTextRecognitionAdapterAar)" />
+    <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionAarPath)" />
+    <AndroidLibrary Update="$(TextRecognitionAarPath)" />
+    <AndroidLibrary Update="$(PlayServicesMlkitTextRecognitionCommonAarPath)" />
+    <AndroidLibrary Update="$(VisionInterfacesAarPath)" />
+    <AndroidLibrary Update="$(TextRecognitionBundledCommonAarPath)" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference
       Include="../../Commons/MauiMLKit.Commons.AndroidSupplier.csproj"
     />
