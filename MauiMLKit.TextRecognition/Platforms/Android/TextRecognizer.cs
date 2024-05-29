@@ -1,7 +1,7 @@
 using Com.Google.Mlkit.Vision.Text;
 using Java.Lang;
 using MLKitSharp.Commons;
-using TextRecognitionNative = Com.Mlkitmidlayer.Textrecognition.MLTextRecognition;
+using TextRecognitionNative = Com.Mlkittextrecognitionadapter.MLTextRecognition;
 
 namespace MLKitSharp.TextRecognition;
 
