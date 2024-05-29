@@ -11,7 +11,7 @@
     <TextRecognitionDevanagariAarPath>$(ProjectDir)Supplier/text-recognition-Devanagari-16.0.0.aar</TextRecognitionDevanagariAarPath>
   </PropertyGroup>
 
-  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+  <Target Name="DownloadLibs" BeforeTargets="BuildOnlySettings">
     <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionDevanagariAarPath)')"
       SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-Devanagari/16.0.0/play-services-mlkit-text-recognition-Devanagari-16.0.0.aar"
       DestinationFolder="$(ProjectDir)Supplier/"

@@ -11,7 +11,7 @@
     <TextRecognitionChineseAarPath>$(ProjectDir)Supplier/text-recognition-Chinese-16.0.0.aar</TextRecognitionChineseAarPath>
   </PropertyGroup>
 
-  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+  <Target Name="DownloadLibs" BeforeTargets="BuildOnlySettings">
     <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionChineseAarPath)')"
       SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-Chinese/16.0.0/play-services-mlkit-text-recognition-Chinese-16.0.0.aar"
       DestinationFolder="$(ProjectDir)Supplier/"

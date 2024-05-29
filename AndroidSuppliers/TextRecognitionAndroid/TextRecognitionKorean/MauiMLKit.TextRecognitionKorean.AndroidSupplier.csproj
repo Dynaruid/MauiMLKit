@@ -11,7 +11,7 @@
     <TextRecognitionKoreanAarPath>$(ProjectDir)Supplier/text-recognition-korean-16.0.0.aar</TextRecognitionKoreanAarPath>
   </PropertyGroup>
 
-  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+  <Target Name="DownloadLibs" BeforeTargets="BuildOnlySettings">
     <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionKoreanAarPath)')"
       SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-korean/16.0.0/play-services-mlkit-text-recognition-korean-16.0.0.aar"
       DestinationFolder="$(ProjectDir)Supplier/"

@@ -11,7 +11,7 @@
     <TextRecognitionJapaneseAarPath>$(ProjectDir)Supplier/text-recognition-Japanese-16.0.0.aar</TextRecognitionJapaneseAarPath>
   </PropertyGroup>
 
-  <Target Name="DownloadLibs" BeforeTargets="BeforeCompile">
+  <Target Name="DownloadLibs" BeforeTargets="BuildOnlySettings">
     <DownloadFile Condition="!Exists('$(PlayServicesTextRecognitionJapaneseAarPath)')"
       SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition-Japanese/16.0.0/play-services-mlkit-text-recognition-Japanese-16.0.0.aar"
       DestinationFolder="$(ProjectDir)Supplier/"

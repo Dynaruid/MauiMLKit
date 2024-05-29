@@ -47,7 +47,7 @@
     <TextRecognitionAarPath>$(ProjectDir)Supplier/text-recognition-16.0.0.aar</TextRecognitionAarPath>
   </PropertyGroup>
 
-  <Target Name="DownloadLibs" BeforeTargets="BeforeBuild">
+  <Target Name="DownloadLibs" BeforeTargets="BuildOnlySettings">
 
     <DownloadFile Condition="!Exists('$(PlayServicesMlkitTextRecognitionAarPath)')"
       SourceUrl="https://maven.google.com/com/google/android/gms/play-services-mlkit-text-recognition/19.0.0/play-services-mlkit-text-recognition-19.0.0.aar"
