@@ -23,7 +23,7 @@
     <Exec
       Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
       Command="cd ..\MLKitTextRecognitionAdapter
-      gradlew.bat $(GradleBuildOptions)"
+      .\gradlew.bat $(GradleBuildOptions)"
       WorkingDirectory="$(ProjectDir)"
     />
     <ItemGroup>
