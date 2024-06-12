@@ -20,18 +20,17 @@
       Command="cd ../MLKitTextRecognitionAdapter
       ./gradlew $(GradleBuildOptions)"
     />
+    <PropertyGroup>
+      <EscapedAndroidSdkDirectory>$([System.String]::new('$(AndroidSdkDirectory)').Replace('\', '\\'))</EscapedAndroidSdkDirectory>
+    </PropertyGroup>
     <Exec
       Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
-      Command='cmd /c build-android.bat $(USERPROFILE)\AppData\Local\Android\Sdk $(GradleBuildOptions)'
+      Command="cd ..\MLKitTextRecognitionAdapter
+      echo sdk.dir=$(EscapedAndroidSdkDirectory)> local.properties
+      .\gradlew.bat $(GradleBuildOptions)"
       WorkingDirectory="$(ProjectDir)"
     />
-    <!-- <Exec
-      Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
-      Command='cd ..\MLKitTextRecognitionAdapter
-      "sdk.dir=$(USERPROFILE)\AppData\Local\Android\Sdk" > local.properties
-      .\gradlew.bat $(GradleBuildOptions)'
-      WorkingDirectory="$(ProjectDir)"
-    /> -->
+
     <ItemGroup>
       <MidLayerAarFile
         Include="$(MLKitTextRecognitionAdapterAarPath)/$(MLKitTextRecognitionAdapterAar)" />
