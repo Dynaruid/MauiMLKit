@@ -18,6 +18,7 @@
     <Exec
       Condition="'$(OS)' != 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
       Command="cd ../MLKitTextRecognitionAdapter
+      echo sdk.dir=$(AndroidSdkDirectory)> local.properties
       ./gradlew $(GradleBuildOptions)"
     />
     <PropertyGroup>
