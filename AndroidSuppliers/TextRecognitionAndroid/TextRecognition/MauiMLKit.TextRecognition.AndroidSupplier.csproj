@@ -24,7 +24,7 @@
       <EscapedAndroidSdkDirectory>$([System.String]::new('$(AndroidSdkDirectory)').Replace('\', '\\'))</EscapedAndroidSdkDirectory>
     </PropertyGroup>
     <Exec
-      Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
+      Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)') And $(EscapedAndroidSdkDirectory) != ''"
       Command="cd ..\MLKitTextRecognitionAdapter
       echo sdk.dir=$(EscapedAndroidSdkDirectory)> local.properties
       .\gradlew.bat $(GradleBuildOptions)"
