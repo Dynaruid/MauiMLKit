@@ -22,10 +22,16 @@
     />
     <Exec
       Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
-      Command="cd ..\MLKitTextRecognitionAdapter
-      .\gradlew.bat $(GradleBuildOptions)"
+      Command='cmd /c build-android.bat $(USERPROFILE)\AppData\Local\Android\Sdk $(GradleBuildOptions)'
       WorkingDirectory="$(ProjectDir)"
     />
+    <!-- <Exec
+      Condition="'$(OS)' == 'Windows_NT' And !Exists('$(Supplier/$(MLKitTextRecognitionAdapterAar)')"
+      Command='cd ..\MLKitTextRecognitionAdapter
+      "sdk.dir=$(USERPROFILE)\AppData\Local\Android\Sdk" > local.properties
+      .\gradlew.bat $(GradleBuildOptions)'
+      WorkingDirectory="$(ProjectDir)"
+    /> -->
     <ItemGroup>
       <MidLayerAarFile
         Include="$(MLKitTextRecognitionAdapterAarPath)/$(MLKitTextRecognitionAdapterAar)" />
