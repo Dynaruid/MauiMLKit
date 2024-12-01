@@ -6,7 +6,7 @@ target 'Supplier' do
   use_frameworks!
 
   # Pods for Supplier
-  pod 'MLKitTextRecognitionDevanagari', '~> 3.0.0'
+  pod 'MLKitTextRecognitionDevanagari', '~> 4.0.0'
   
   pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'

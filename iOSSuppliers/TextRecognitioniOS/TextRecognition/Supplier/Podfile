@@ -6,11 +6,11 @@ target 'Supplier' do
   use_frameworks!
 
   # Pods for Supplier
-  pod 'MLKitTextRecognition', '~> 4.0.0'
-  pod 'MLKitTextRecognitionKorean', '~> 3.0.0'
-  pod 'MLKitTextRecognitionJapanese', '~> 3.0.0'
-  pod 'MLKitTextRecognitionDevanagari', '~> 3.0.0'
-  pod 'MLKitTextRecognitionChinese', '~> 3.0.0'
+  pod 'MLKitTextRecognition', '~> 5.0.0'
+  pod 'MLKitTextRecognitionKorean', '~> 4.0.0'
+  pod 'MLKitTextRecognitionJapanese', '~> 4.0.0'
+  pod 'MLKitTextRecognitionDevanagari', '~> 4.0.0'
+  pod 'MLKitTextRecognitionChinese', '~> 4.0.0'
   
   pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'

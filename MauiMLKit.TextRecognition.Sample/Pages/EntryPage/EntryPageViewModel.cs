@@ -168,13 +168,14 @@ public partial class EntryPageViewModel : ObservableObject
     public async Task<bool> RequestStoragePermissionAsync()
     {
         // 권한 상태를 확인합니다.
-        var status = await Permissions.CheckStatusAsync<Permissions.Photos>();
+        // var status = await Permissions.CheckStatusAsync<Permissions.Photos>();
+        var status = await Permissions.RequestAsync<Permissions.Photos>();
 
-        if (status != PermissionStatus.Granted)
-        {
-            // 권한이 허용되지 않았다면 사용자에게 권한 요청
-            status = await Permissions.RequestAsync<Permissions.Photos>();
-        }
+        // if (status != PermissionStatus.Granted)
+        // {
+        //     // 권한이 허용되지 않았다면 사용자에게 권한 요청
+        //     status = await Permissions.RequestAsync<Permissions.Photos>();
+        // }
 
         // 권한 허용 여부 반환
         return status == PermissionStatus.Granted;

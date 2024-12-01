@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MauiMLKit.TextRecognition.Sample</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -19,7 +19,7 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">16.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">18.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">30.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
@@ -42,8 +42,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.10" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.4.24266.19" />
 
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
@@ -55,12 +55,13 @@
 		<PackageReference Include="UraniumUI.Material" Version="2.9.0-pre.3" />
 	</ItemGroup>
 
-	<PropertyGroup>
+	<!-- <PropertyGroup>
 		<RuntimeIdentifier Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'"
 		>iossimulator-x64</RuntimeIdentifier>
-	</PropertyGroup>
+	</PropertyGroup> -->
 
 	<PropertyGroup Condition="$(RuntimeIdentifier.Contains('iossimulator')) == 'True'">
+		<!-- <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier> -->
 		<IOS_SIMULATOR>True</IOS_SIMULATOR>
 	</PropertyGroup>
 	<PropertyGroup Condition="$(RuntimeIdentifier.Contains('iossimulator')) == 'False'">

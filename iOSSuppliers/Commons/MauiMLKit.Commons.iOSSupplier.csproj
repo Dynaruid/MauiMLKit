@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-ios</TargetFramework>
+    <TargetFramework>net9.0-ios</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <IsBindingProject>true</IsBindingProject>
@@ -58,11 +58,11 @@
         <Kind>Framework</Kind>
         <LinkerFlags>-ObjC -lc++</LinkerFlags>
       </NativeReference>
-      <NativeReference
+      <!-- <NativeReference
         Include="$(XCodeBuildDir)/GoogleUtilitiesComponents/GoogleUtilitiesComponents.framework">
         <Kind>Framework</Kind>
         <LinkerFlags>-ObjC -lc++</LinkerFlags>
-      </NativeReference>
+      </NativeReference> -->
       <NativeReference
         Include="$(XCodeBuildDir)/GTMSessionFetcher/GTMSessionFetcher.framework">
         <Kind>Framework</Kind>
